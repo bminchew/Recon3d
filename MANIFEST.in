@@ -1,0 +1,4 @@
+include *.txt
+exclude build
+exclude recon3d/petsc_func.py
+####recursive-include recon3d/test_data * 
