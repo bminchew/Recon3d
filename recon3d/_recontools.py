@@ -61,12 +61,7 @@ def _round(a):
    
    a :  float
    """
-   d = 0
-   if (np.abs( a - np.int32(a) ) >= 0.5):
-      d = a/np.abs(a)
-   return np.int32(a + d)
-
-
+   return np.int32(a + np.sign(a)*0.5)
 
 ###===========================================================================
 def _usage_warning(mode=None):

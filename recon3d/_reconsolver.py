@@ -163,7 +163,6 @@ class Solver():
          self._cleanup(p=p)
 ###-----------------------------------------------------------------------------
 
-
 ###-----------------------------------------------------------------------------
    def PPS(self,p,comm):
       """
@@ -577,6 +576,25 @@ class Solver():
       fid = open(outname+'.up','w')
       outup.flatten().tofile(fid)
       fid.close() 
+
+###-----------------------------------------------------------------------------
+   def _write_dummy_unw(self,fluvdiv,p):
+      """
+      Writes dummy unw files
+      """
+      outname = p.gen.outfldr + p.gen.outpref
+      address  = self._read_address(p)
+      outeast  = np.empty([p.gen.doline,p.gen.cols],dtype=np.float32)
+      addind, lenadd = 0, len(address)
+      for i in np.arange(p.gen.doline):
+         for j in np.arange(p.gen.cols):
+            if addind < lenadd and address[addind] == i*p.gen.cols+j:
+               outeast[i,j] = model[3*addind]
+               addind += 1
+            else:
+               outeast[i,j] = p.gen.outnull
+      with open(outname+'.dummyunw','w') as fid:
+         outeast.flatten().tofile(fid)
 
 ###-----------------------------------------------------------------------------
    def _write_numscenes(self,numscenes,p):
