@@ -17,7 +17,6 @@ def pixel_offsets(p):
    p :   Parser class object
 
    """
-
    for i in np.arange(len(p.scenes)):
       latoff = (p.gen.cornlat - p.scenes[i].cornlat)/p.scenes[i].spacelat
       p.scenes[i].offlat = -1*_round(latoff)  
@@ -40,7 +39,6 @@ def column_buffer(p):
    p :  Parser class object 
 
    """
-
    for i in np.arange(len(p.scenes)):
       if p.scenes[i].offlon <= 0:
          p.scenes[i].bcol = 0
@@ -48,8 +46,6 @@ def column_buffer(p):
       else:
          p.scenes[i].bcol = p.scenes[i].offlon 
          p.scenes[i].scol = 0
-
-
 
 ###===========================================================================
 def _round(a):
@@ -96,7 +92,6 @@ def _usage_warning(mode=None):
       doc = ''.join(doc.split('@@@')[:3])
    print(doc)
    sys.exit()
-   
 
 ###===========================================================================
 def _make_command_file(n):
